@@ -4,20 +4,26 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMoveTest : MonoBehaviour {
+    
     private Animator animator;
+    
+    // 摇杆死区
     private float threshold = 0.1f;
+    
+    // 前进速度
     public float forwardSpeed = 2.0f;
+    // 后退速度
     public float backwardSpeed = 1.5f;
-    private float targetSpeed;
-    private float currentSpeed;
+    // 侧走速度
+    public float strafeSpeed = 1.5f;
+    
+    // 目标速度
+    private Vector2 targetSpeed;
+    // 当前速度
+    private Vector2 currentSpeed;
 
     private Vector3 movement;
 
-    private Vector2 moveInput;
-    private Vector2 aimPosition;
-
-    private bool isAiming;
-    private bool currentAimState;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,46 +33,62 @@ public class PlayerMoveTest : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Move();
-        PlayerRotate();
+        Look();
     }
 
     void Move() {
-        currentSpeed = Mathf.Lerp(targetSpeed, currentSpeed, 0.9f);
-        movement = new Vector3(0, 0, currentSpeed * Time.deltaTime);
+        currentSpeed.y = Mathf.Lerp(targetSpeed.y, currentSpeed.y, 0.9f);
+        currentSpeed.x = Mathf.Lerp(targetSpeed.x, currentSpeed.x, 0.9f);
+        movement = new Vector3(currentSpeed.x * Time.deltaTime, 0, currentSpeed.y * Time.deltaTime);
+        // movement = (transform.forward * currentSpeed.y + transform.right * currentSpeed.x) * Time.deltaTime;
         transform.position += movement;
     }
     
     public void PlayerMove(InputAction.CallbackContext callbackContext) {
-        Vector2 movement = callbackContext.ReadValue<Vector2>();
-        targetSpeed = 0f;
-        if (movement.y > threshold) {
+        Vector2 moveInput = callbackContext.ReadValue<Vector2>();
+        targetSpeed = new Vector2(0, 0);
+        if (moveInput.y > threshold) {
             animator.SetBool("向前走", true);
-            targetSpeed = forwardSpeed * movement.y;
-        } else if (movement.y <= threshold) {
+            targetSpeed.y = forwardSpeed * moveInput.y;
+        } else if (moveInput.y <= threshold) {
             animator.SetBool("向前走", false);
         }
         
-        if (movement.y < -threshold) {
+        if (moveInput.y < -threshold) {
             animator.SetBool("向后退", true);
-            targetSpeed = backwardSpeed * movement.y;
-        } else if (movement.y >= -threshold) {
+            targetSpeed.y = backwardSpeed * moveInput.y;
+        } else if (moveInput.y >= -threshold) {
             animator.SetBool("向后退", false);
         }
-    }
-    
-    public void GetAimPosition(InputAction.CallbackContext ctx) {
-        aimPosition = ctx.ReadValue<Vector2>();
+
+        if (moveInput.x > threshold) {
+            animator.SetBool("向右走", true);
+            targetSpeed.x = strafeSpeed * moveInput.x;
+        } else if (moveInput.x <= threshold) {
+            animator.SetBool("向右走", false);
+        }
+
+        if (moveInput.x < -threshold) {
+            animator.SetBool("向左走", true);
+            targetSpeed.x = strafeSpeed * moveInput.x;
+        } else if (moveInput.x >= -threshold) {
+            animator.SetBool("向左走", false);
+        }
     }
 
-    void PlayerRotate() {
-        // Vector3 playerTargetPosition;
-        // Ray ray = Camera.main.ScreenPointToRay(aimPosition);
-        // Plane hitPlane = new Plane(Vector3.up, transform.position);
-        // float distance;
-        // if (hitPlane.Raycast(ray, out distance)) {
-        //     playerTargetPosition = ray.GetPoint(distance);
-        //     transform.LookAt(playerTargetPosition);
-        // }
-        // Debug.Log(aimPosition);
+    private Vector3 world;
+    void Look() {
+        Vector3 mousePosition = Pointer.current.position.ReadValue();
+        Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+        mousePosition.z = playerPosition.z;
+        world.x=Camera.main.ScreenToWorldPoint(mousePosition).x;
+        world.z=Camera.main.ScreenToWorldPoint(mousePosition).z;
+        world.y=transform.position.y;
+        transform.LookAt(world);
+    }
+
+    public void PlayerLook(InputAction.CallbackContext callbackContext) {
+        Vector2 mousePosition = callbackContext.ReadValue<Vector2>();
+        // Debug.Log(mousePosition);
     }
 }
