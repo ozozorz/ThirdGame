@@ -11,6 +11,8 @@ TagManager:
   - 
   - Water
   - UI
+  - Obs
+  - viewRange
   - 
   - 
   - 
@@ -34,9 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - non select
   m_SortingLayers:
   - name: Default
     uniqueID: 0
