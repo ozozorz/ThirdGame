@@ -9,6 +9,4 @@ public class AlertBehaviour : MonoBehaviour
     {
         foundPlayer = false;
     }
-
-
 }

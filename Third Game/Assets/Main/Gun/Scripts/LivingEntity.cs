@@ -7,7 +7,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
     public float startingHealth;
     protected float health;
     protected bool dead;
-    protected Animator animator;
+    public Animator animator;
     protected CharacterController cc;
 
     public virtual void Start() {

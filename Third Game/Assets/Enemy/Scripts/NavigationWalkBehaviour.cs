@@ -4,18 +4,26 @@ using UnityEngine.AI;
 public class NavigationWalkBehaviour : MonoBehaviour
 {
     public NavMeshAgent agent;
-     Vector3 _destination;
+    Vector3 _destination;
+    [HideInInspector]
     public PatrolBehaviour patrol;
+    [HideInInspector]
     public LivingEntity livingEntity;
+
+    private void Awake()
+    {
+        patrol = GetComponent<PatrolBehaviour>();
+        livingEntity = GetComponent<LivingEntity>();
+    }
 
     public void StopWalk()
     {
-        //livingEntity.ani
+        livingEntity.animator.SetBool("向前走", false);
     }
 
     public void StartWalk()
     {
-
+        livingEntity.animator.SetBool("向前走", true);
     }
 
     private void Update()

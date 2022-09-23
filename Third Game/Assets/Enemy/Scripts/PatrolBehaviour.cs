@@ -1,11 +1,21 @@
 ﻿using UnityEngine;
 
-
 public class PatrolBehaviour : MonoBehaviour
 {
+    [HideInInspector]
     public AlertBehaviour alertBehaviour;
+    [HideInInspector]
     public CheckSoundBehaviour checkSound;
 
+    public Vector3 _startPos;
+
+    private void Awake()
+    {
+        alertBehaviour = GetComponent<AlertBehaviour>();
+        checkSound = GetComponent<CheckSoundBehaviour>();
+    }
+
+    [System.Serializable]
     public class PatrolPoint
     {
         public Transform pos;
@@ -21,6 +31,7 @@ public class PatrolBehaviour : MonoBehaviour
 
     public void Start()
     {
+        _startPos = transform.position;
         _hasPatrolPoints = false;
         _waitTimer = 0;
         if (patrolPoints != null && patrolPoints.Length > 0)
@@ -54,18 +65,34 @@ public class PatrolBehaviour : MonoBehaviour
             return;
         }
 
-        var dist = (transform.position - patrolPoints[_patrolIndex].pos.position).magnitude;
-        if (dist < 0.5f)
+        var dir = transform.position - patrolPoints[_patrolIndex].pos.position;
+        dir.y = 0;
+        var dist = dir.magnitude;
+        if (dist < 0.75f)
         {
             OnPatrolArrived();
         }
+    }
 
+    public void ContinuePatrol()
+    {
+        if (!_hasPatrolPoints)
+        {
+            navigationWalk.GoToDestination(_startPos);
+            return;
+        }
 
+        navigationWalk.GoToDestination(patrolPoints[_patrolIndex].pos.position);
     }
 
     public void OnPatrolArrived()
     {
         _waitTimer = patrolPoints[_patrolIndex].waitTime;
+        if (_waitTimer <= 0)
+        {
+            _waitTimer = 0.5f;
+        }
+
         _patrolIndex++;
         if (_patrolIndex >= patrolPoints.Length)
             _patrolIndex = 0;
