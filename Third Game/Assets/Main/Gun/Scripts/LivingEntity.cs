@@ -8,10 +8,12 @@ public class LivingEntity : MonoBehaviour, IDamageable {
     protected float health;
     protected bool dead;
     protected Animator animator;
+    protected CharacterController cc;
 
     public virtual void Start() {
         health = startingHealth;
         animator = GetComponent<Animator>();
+        cc = GetComponent<CharacterController>();
     }
 
     public void TakeHit(float damage, RaycastHit hit) {
@@ -24,6 +26,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
     public void Die() {
         dead = true;
         // Destroy(gameObject);
+        cc.enabled = false;
         animator.SetBool("死亡", true);
     }
 }
