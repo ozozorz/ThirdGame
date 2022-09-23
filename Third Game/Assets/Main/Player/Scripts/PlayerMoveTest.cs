@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMoveTest : MonoBehaviour {
+public class PlayerMoveTest : LivingEntity {
     
-    private Animator animator;
+    // private Animator animator;
     
     // 摇杆死区
     private float threshold = 0.1f;
@@ -24,10 +24,14 @@ public class PlayerMoveTest : MonoBehaviour {
 
     private Vector3 movement;
 
+    private Camera viewCamara;
+
 
     // Start is called before the first frame update
-    void Start() {
-        animator = GetComponent<Animator>();
+    public override void Start() {
+        base.Start();
+        // animator = GetComponent<Animator>();
+        viewCamara = Camera.main;
     }
 
     // Update is called once per frame
@@ -39,9 +43,10 @@ public class PlayerMoveTest : MonoBehaviour {
     void Move() {
         currentSpeed.y = Mathf.Lerp(targetSpeed.y, currentSpeed.y, 0.9f);
         currentSpeed.x = Mathf.Lerp(targetSpeed.x, currentSpeed.x, 0.9f);
-        movement = new Vector3(currentSpeed.x * Time.deltaTime, 0, currentSpeed.y * Time.deltaTime);
+        // movement = new Vector3(currentSpeed.x * Time.deltaTime, 0, currentSpeed.y * Time.deltaTime);
         // movement = (transform.forward * currentSpeed.y + transform.right * currentSpeed.x) * Time.deltaTime;
-        transform.position += movement;
+        // transform.position += movement;
+        animator.SetFloat("Speed", currentSpeed.y);
     }
     
     public void PlayerMove(InputAction.CallbackContext callbackContext) {
@@ -78,17 +83,26 @@ public class PlayerMoveTest : MonoBehaviour {
 
     private Vector3 world;
     void Look() {
-        Vector3 mousePosition = Pointer.current.position.ReadValue();
-        Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-        mousePosition.z = playerPosition.z;
-        world.x=Camera.main.ScreenToWorldPoint(mousePosition).x;
-        world.z=Camera.main.ScreenToWorldPoint(mousePosition).z;
-        world.y=transform.position.y;
-        transform.LookAt(world);
+        // Vector3 mousePosition = Pointer.current.position.ReadValue();
+        // Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
+        // mousePosition.z = playerPosition.z;
+        // world.x=Camera.main.ScreenToWorldPoint(mousePosition).x;
+        // world.z=Camera.main.ScreenToWorldPoint(mousePosition).z;
+        // world.y=transform.position.y;
+        // transform.LookAt(world);
+        
     }
 
     public void PlayerLook(InputAction.CallbackContext callbackContext) {
-        Vector2 mousePosition = callbackContext.ReadValue<Vector2>();
+        Vector3 mousePosition = Pointer.current.position.ReadValue();
+        Ray ray = viewCamara.ScreenPointToRay(mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayDistance;
+        if (groundPlane.Raycast(ray, out rayDistance)) {
+            Vector3 point = ray.GetPoint(rayDistance);
+            Debug.DrawLine(ray.origin, point, Color.red);
+            transform.LookAt(point);
+        }
         // Debug.Log(mousePosition);
     }
 }
