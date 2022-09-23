@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
+
 
 public class PatrolBehaviour : MonoBehaviour
 {
@@ -13,11 +13,7 @@ public class PatrolBehaviour : MonoBehaviour
     }
 
     public PatrolPoint[] patrolPoints;
-
-    public NavMeshAgent meshAgent;
-    public Transform destination;
-
-    public CharacterAnimationBehaviour characterAnimation;
+    public NavigationWalkBehaviour navigationWalk;
 
     int _patrolIndex;
     bool _hasPatrolPoints;
@@ -35,16 +31,8 @@ public class PatrolBehaviour : MonoBehaviour
 
         if (_hasPatrolPoints)
         {
-            GoToDestination(patrolPoints[0].pos.position);
+            navigationWalk.GoToDestination(patrolPoints[0].pos.position);
         }
-    }
-
-    void OnPatrolArrived()
-    {
-        _waitTimer = patrolPoints[_patrolIndex].waitTime;
-        _patrolIndex++;
-        if (_patrolIndex >= patrolPoints.Length)
-            _patrolIndex = 0;
     }
 
     private void Update()
@@ -61,34 +49,25 @@ public class PatrolBehaviour : MonoBehaviour
             _waitTimer -= Time.deltaTime;
             if (_waitTimer <= 0)
             {
-                GoToDestination(patrolPoints[_patrolIndex].pos.position);
+                navigationWalk.GoToDestination(patrolPoints[_patrolIndex].pos.position);
             }
             return;
         }
 
-        CheckStopNav();
-    }
-
-    void CheckStopNav()
-    {
-        if (meshAgent.remainingDistance < 0.05f && meshAgent.desiredVelocity.magnitude < 0.15f)
+        var dist = (transform.position - patrolPoints[_patrolIndex].pos.position).magnitude;
+        if (dist < 0.5f)
         {
-            characterAnimation.StopWalk();
             OnPatrolArrived();
         }
+
+
     }
 
-    public void GoToDestination(Vector3 p)
+    public void OnPatrolArrived()
     {
-        destination.transform.position =p;
-        meshAgent.SetDestination(destination.position);
-        characterAnimation.StartWalk();
-    }
-
-    public void ForceStop()
-    {
-        meshAgent.SetDestination(transform.position);
-        meshAgent.isStopped = true;
-        characterAnimation.StopWalk();
+        _waitTimer = patrolPoints[_patrolIndex].waitTime;
+        _patrolIndex++;
+        if (_patrolIndex >= patrolPoints.Length)
+            _patrolIndex = 0;
     }
 }

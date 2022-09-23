@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class CheckSoundBehaviour : MonoBehaviour
 {
     public AlertBehaviour alertBehaviour;
 
     public float range = 5f;
-    public NavMeshAgent mna;
     Vector3 _checkPos;
+
+    public NavigationWalkBehaviour navigationWalk;
 
     public enum CheckState
     {
@@ -26,14 +26,18 @@ public class CheckSoundBehaviour : MonoBehaviour
 
     public void ReceiveSoundEvent(Vector3 pos)
     {
+        Debug.Log("ReceiveSoundEvent");
         if (IsInDisableReactSoundState())
-        {
             return;
-        }
+
+        var dist = (transform.position - pos).magnitude;
+        Debug.Log("dist " + dist);
+        if (dist > range)
+            return;
 
         _checkPos = pos;
         checkState = CheckState.GoingTo;
-        mna.SetDestination(_checkPos);
+        navigationWalk.GoToDestination(_checkPos);
     }
 
     bool IsInDisableReactSoundState()
@@ -43,5 +47,4 @@ public class CheckSoundBehaviour : MonoBehaviour
 
         return false;
     }
-
 }

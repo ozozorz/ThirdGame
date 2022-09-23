@@ -2,41 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour
+{
 
     public LayerMask collisionMask;
-    
+
     private float speed = 10f;
     private float damage = 100f;
-
+    public bool emitSoundToEnemies;
     public GameObject bulletImpactFx;
 
-    public void SetSpeed(float speed) {
+    public void SetSpeed(float speed)
+    {
         this.speed = speed;
     }
-    
+
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         float moveDistance = speed * Time.deltaTime;
         CheckCollisions(moveDistance);
         transform.Translate(Vector3.forward * moveDistance);
     }
 
-    void CheckCollisions(float moveDistance) {
+    void CheckCollisions(float moveDistance)
+    {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide)) {
+        if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
+        {
             OnHitObject(hit);
         }
     }
 
-    void OnHitObject(RaycastHit hit) {
+    void OnHitObject(RaycastHit hit)
+    {
         Instantiate(bulletImpactFx, hit.transform.position, hit.transform.rotation);
         IDamageable damageableObject = hit.collider.GetComponentInParent<IDamageable>();
-        if (damageableObject != null) {
+        if (damageableObject != null)
+        {
             damageableObject.TakeHit(damage, hit);
         }
+        if (emitSoundToEnemies)
+        {
+            var enes = EnemySystem.instance.enemies;
+            foreach (var e in enes)
+            {
+                if (e == null)
+                    continue;
+
+                e.GetComponent<CheckSoundBehaviour>().ReceiveSoundEvent(transform.position);
+            }
+        }
+
         GameObject.Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
 
     public virtual void Start() {
         health = startingHealth;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
     }
 
