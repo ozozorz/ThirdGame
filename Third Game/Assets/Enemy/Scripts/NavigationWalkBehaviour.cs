@@ -18,12 +18,12 @@ public class NavigationWalkBehaviour : MonoBehaviour
 
     public void StopWalk()
     {
-        livingEntity.animator.SetBool("向前走", false);
+        livingEntity.animator.SetBool("crouch", false);
     }
 
     public void StartWalk()
     {
-        livingEntity.animator.SetBool("向前走", true);
+        livingEntity.animator.SetBool("crouch", true);
     }
 
     private void Update()

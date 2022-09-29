@@ -7,6 +7,8 @@ public class PatrolBehaviour : MonoBehaviour
     [HideInInspector]
     public CheckSoundBehaviour checkSound;
 
+    public Animator animator;
+
     public Vector3 _startPos;
 
     private void Awake()
@@ -83,6 +85,9 @@ public class PatrolBehaviour : MonoBehaviour
         }
 
         navigationWalk.GoToDestination(patrolPoints[_patrolIndex].pos.position);
+        
+        // zk
+        // animator.SetBool("向前走", true);
     }
 
     public void OnPatrolArrived()
@@ -96,5 +101,8 @@ public class PatrolBehaviour : MonoBehaviour
         _patrolIndex++;
         if (_patrolIndex >= patrolPoints.Length)
             _patrolIndex = 0;
+        
+        // zk
+        // animator.SetBool("向前走", false);
     }
 }

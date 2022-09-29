@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
                 if (e == null)
                     continue;
 
-                e.GetComponent<CheckSoundBehaviour>().ReceiveSoundEvent(transform.position);
+                e.GetComponent<CheckSoundBehaviour>()?.ReceiveSoundEvent(transform.position);
             }
         }
 

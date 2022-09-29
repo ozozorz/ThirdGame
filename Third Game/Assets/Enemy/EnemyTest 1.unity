@@ -662,7 +662,7 @@ Animator:
   m_GameObject: {fileID: 129830872}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f32b5b6d346499542b898f97c64c7afe, type: 3}
-  m_Controller: {fileID: 9100000, guid: f43045c5ae53c3c44987892bbfa75156, type: 2}
+  m_Controller: {fileID: 9100000, guid: d44610ceb9acd1749bfe4b60cddf3a35, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3139,6 +3139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  animator: {fileID: 1819384687}
 --- !u!195 &719277235
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3220,6 +3221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertBehaviour: {fileID: 719277244}
   checkSound: {fileID: 719277245}
+  animator: {fileID: 1819384687}
+  _startPos: {x: 0, y: 0, z: 0}
   patrolPoints: []
   navigationWalk: {fileID: 719277242}
 --- !u!114 &719277242
@@ -3841,6 +3844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  animator: {fileID: 0}
   forwardSpeed: 2
   backwardSpeed: 1.5
   strafeSpeed: 1.5
@@ -9015,6 +9019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  animator: {fileID: 129830874}
 --- !u!114 &1646682879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9029,6 +9034,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertBehaviour: {fileID: 1646682882}
   checkSound: {fileID: 1646682883}
+  animator: {fileID: 129830874}
+  _startPos: {x: 0, y: 0, z: 0}
   patrolPoints:
   - pos: {fileID: 1144057328}
     waitTime: 0
@@ -9650,7 +9657,7 @@ Animator:
   m_GameObject: {fileID: 1819384685}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f32b5b6d346499542b898f97c64c7afe, type: 3}
-  m_Controller: {fileID: 9100000, guid: f43045c5ae53c3c44987892bbfa75156, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1fbbd0b2031f9e04fa38fdfb57e680b8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
