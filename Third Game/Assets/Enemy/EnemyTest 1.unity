@@ -3107,7 +3107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &719277233
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3240,6 +3240,7 @@ MonoBehaviour:
   agent: {fileID: 719277235}
   patrol: {fileID: 719277241}
   livingEntity: {fileID: 719277234}
+  tickTime: 0.4
 --- !u!114 &719277243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9059,6 +9060,7 @@ MonoBehaviour:
   agent: {fileID: 1646682876}
   patrol: {fileID: 1646682879}
   livingEntity: {fileID: 1646682878}
+  tickTime: 0.4
 --- !u!114 &1646682881
 MonoBehaviour:
   m_ObjectHideFlags: 0
