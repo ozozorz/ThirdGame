@@ -26,7 +26,6 @@ public class PlayerMoveTest : LivingEntity {
 
     private Camera viewCamara;
 
-
     // Start is called before the first frame update
     public override void Start() {
         base.Start();
@@ -43,9 +42,10 @@ public class PlayerMoveTest : LivingEntity {
     void Move() {
         currentSpeed.y = Mathf.Lerp(targetSpeed.y, currentSpeed.y, 0.9f);
         currentSpeed.x = Mathf.Lerp(targetSpeed.x, currentSpeed.x, 0.9f);
-        movement = new Vector3(currentSpeed.x * Time.deltaTime, 0, currentSpeed.y * Time.deltaTime);
-        movement = (transform.forward * currentSpeed.y + transform.right * currentSpeed.x) * Time.deltaTime;
-        transform.position += movement;
+        //movement = new Vector3(currentSpeed.x * Time.deltaTime, 0, currentSpeed.y * Time.deltaTime);
+        //movement = (transform.forward * currentSpeed.y + transform.right * currentSpeed.x) * Time.deltaTime;
+        // transform.position += movement;
+        cc.SimpleMove(transform.forward * currentSpeed.y + transform.right * currentSpeed.x);
         animator.SetFloat("Speed", currentSpeed.y);
     }
     
