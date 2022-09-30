@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 最早测试用的超级简单的移动功能，正式游戏中不用
+/// </summary>
 public class Controller : MonoBehaviour
 {
     public float moveSpeed = 6;

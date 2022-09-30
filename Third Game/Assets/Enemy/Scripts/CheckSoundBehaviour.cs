@@ -1,19 +1,31 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 检测声音，并让角色去侦查
+/// </summary>
 public class CheckSoundBehaviour : MonoBehaviour
 {
+    /// <summary>
+    /// 警戒系统，听到声音不是警戒，发现敌人才是警戒
+    /// </summary>
     [HideInInspector]
     public AlertBehaviour alertBehaviour;
+    /// <summary>
+    /// 巡逻系统，负责巡逻路线
+    /// </summary>
     [HideInInspector]
     public PatrolBehaviour patrol;
+    /// <summary>
+    /// 和NavMeshAgent沟通的系统，复杂使用NavMesh的ai做寻路，以及角色的走路动画
+    /// </summary>
     [HideInInspector]
     public NavigationWalkBehaviour navigationWalk;
 
-    public float range = 5f;
-    Vector3 _checkPos;
-    Vector3 _leavePos;
-    public float waitTime=3f;
-    public float checkDistance = 2.5f;
+    public float range = 5f;//能听到的半径
+    Vector3 _checkPos;//声音来源位置
+    Vector3 _leavePos;//发现后开始去侦察时，离开的位置。保存这个位置是为了侦查结束后回到这里
+    public float waitTime=3f;//在声音来源附近停留的时长
+    public float checkDistance = 2.5f;//在声音来源附近停留的位置和声音来源的距离
     public enum CheckState
     {
         None,
@@ -21,8 +33,8 @@ public class CheckSoundBehaviour : MonoBehaviour
         Wait,
         Back,
     }
-    public CheckState checkState { get; private set; }
-    float _stateWaitTimestamp;
+    public CheckState checkState { get; private set; }//侦查的状态
+    float _stateWaitTimestamp;//将会切换到下个状态的时间
 
     private void Awake()
     {
@@ -32,6 +44,10 @@ public class CheckSoundBehaviour : MonoBehaviour
         navigationWalk = GetComponent<NavigationWalkBehaviour>();
     }
 
+    /// <summary>
+    /// 尝试接受一个可疑的声音事件
+    /// </summary>
+    /// <param name="pos">声音来源位置</param>
     public void ReceiveSoundEvent(Vector3 pos)
     {
         if (IsInDisableReactSoundState())
@@ -48,6 +64,11 @@ public class CheckSoundBehaviour : MonoBehaviour
         navigationWalk.GoToDestination(_checkPos);
     }
 
+    /// <summary>
+    /// 是否处于无法响应可疑声音的状态
+    /// 目前是警戒状态优先于响应可疑声音
+    /// </summary>
+    /// <returns></returns>
     bool IsInDisableReactSoundState()
     {
         if (alertBehaviour.foundPlayer)

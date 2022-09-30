@@ -3,16 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+/// <summary>
+/// 视野类
+/// </summary>
 public class FieldOfView : MonoBehaviour
 {
+    /// <summary>
+    ///用于debug的文字显示
+    /// </summary>
     public Text txt;
 
     public float viewRadius;
     [Range(0, 360)]
     public float viewAngle;
 
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
+    public LayerMask targetMask;//目标的mask 这个图层对应的物体应该就是玩家（可能是敌人的友军的尸体）
+    public LayerMask obstacleMask;//障碍物的mask 这个图层对应的物体，会遮挡视线
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
@@ -21,7 +27,7 @@ public class FieldOfView : MonoBehaviour
     public int edgeResolveIterations;
     public float edgeDstThreshold;
 
-    public float maskCutawayDst = .1f;
+    public float maskCutawayDst = .1f;//最近的位置不显示视野扇形的范围
 
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;

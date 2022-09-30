@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// 巡逻系统，负责巡逻路线
+/// </summary>
 public class PatrolBehaviour : MonoBehaviour
 {
     [HideInInspector]
@@ -17,10 +20,19 @@ public class PatrolBehaviour : MonoBehaviour
         checkSound = GetComponent<CheckSoundBehaviour>();
     }
 
+    /// <summary>
+    /// 巡逻点的定义
+    /// </summary>
     [System.Serializable]
     public class PatrolPoint
     {
+        /// <summary>
+        /// 巡逻点的transform
+        /// </summary>
         public Transform pos;
+        /// <summary>
+        /// 在这个点停留的时间
+        /// </summary>
         public float waitTime = 1f;
     }
 
@@ -95,6 +107,7 @@ public class PatrolBehaviour : MonoBehaviour
         _waitTimer = patrolPoints[_patrolIndex].waitTime;
         if (_waitTimer <= 0)
         {
+            //这里强制至少留了一定的停留时间，这样看起来比较自然
             _waitTimer = 0.5f;
         }
 
