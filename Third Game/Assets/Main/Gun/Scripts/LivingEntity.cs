@@ -3,30 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LivingEntity : MonoBehaviour, IDamageable {
+public class LivingEntity : MonoBehaviour, IDamageable
+{
     public float startingHealth;
     protected float health;
     public bool dead;
     public Animator animator;
     protected CharacterController cc;
 
-    public virtual void Start() {
+    public virtual void Start()
+    {
         health = startingHealth;
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
     }
 
-    public void TakeHit(float damage, RaycastHit hit) {
+    public void TakeHit(float damage, RaycastHit hit)
+    {
         health -= damage;
-        if (health <= 0 && !dead) {
+        if (health <= 0 && !dead)
+        {
             Die();
         }
     }
 
-    public virtual void Die() {
+    public virtual void Die()
+    {
         dead = true;
         // Destroy(gameObject);
         cc.enabled = false;
-        animator.SetBool("死亡", true);
+        animator.SetTrigger("die");
     }
 }

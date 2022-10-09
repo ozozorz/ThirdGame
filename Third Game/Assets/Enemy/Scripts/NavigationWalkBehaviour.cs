@@ -37,7 +37,7 @@ public class NavigationWalkBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time>= _nextTickTime)
+        if (Time.time >= _nextTickTime)
         {
             _nextTickTime = Time.time + tickTime;
             CheckStopNav();
@@ -55,6 +55,10 @@ public class NavigationWalkBehaviour : MonoBehaviour
 
     public void GoToDestination(Vector3 p)
     {
+        if (!this.enabled)
+        {
+            return;
+        }
         //Debug.LogWarning("GoToDestination"+ p);
         _destination = p;
         agent.SetDestination(_destination);
@@ -64,6 +68,10 @@ public class NavigationWalkBehaviour : MonoBehaviour
 
     public void ForceStop()
     {
+        if (!this.enabled)
+        {
+            return;
+        }
         agent.SetDestination(transform.position);
         agent.isStopped = true;
         StopWalk();
