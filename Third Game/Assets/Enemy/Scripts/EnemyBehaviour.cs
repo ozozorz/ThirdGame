@@ -12,5 +12,4 @@ public class EnemyBehaviour : MonoBehaviour
     {
         EnemySystem.instance.enemies.Add(this);
     }
-
 }
