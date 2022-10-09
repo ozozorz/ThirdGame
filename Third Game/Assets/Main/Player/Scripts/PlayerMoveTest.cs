@@ -100,8 +100,9 @@ public class PlayerMoveTest : LivingEntity {
         float rayDistance;
         if (groundPlane.Raycast(ray, out rayDistance)) {
             Vector3 point = ray.GetPoint(rayDistance);
+            point.y = transform.position.y;
             Debug.DrawLine(ray.origin, point, Color.red);
-            transform.LookAt(point);
+            transform.LookAt(point, Vector3.up);
         }
         // Debug.Log(mousePosition);
     }

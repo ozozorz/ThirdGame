@@ -162,6 +162,7 @@ MonoBehaviour:
   edgeDstThreshold: 0.5
   maskCutawayDst: 0.12
   viewMeshFilter: {fileID: 1806446796954451159}
+  alertBehaviour: {fileID: 0}
 --- !u!114 &1806446795066853252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +258,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  dead: 0
   animator: {fileID: 1806446796583545693}
+  dieDisables:
+  - {fileID: 1806446795066853251}
+  - {fileID: 1806446795066853252}
+  - {fileID: 1806446795066853253}
+  - {fileID: 1806446795066853254}
+  - {fileID: 1806446795066853255}
+  - {fileID: 1806446795066852984}
+  - {fileID: 1806446795066852987}
+  dieDisactives:
+  - {fileID: 1806446796954451144}
 --- !u!143 &1806446795066852986
 CharacterController:
   m_ObjectHideFlags: 0
