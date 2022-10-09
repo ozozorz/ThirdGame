@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class guiTextSet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	 guiText.text= 	"\nArrow Keys: Move\nLeft Shift: Sneak\nZ: Use Switch\nX: Attract Attention";
+		// Text.text = "\nArrow Keys: Move\nLeft Shift: Sneak\nZ: Use Switch\nX: Attract Attention";
 	
 	}
 

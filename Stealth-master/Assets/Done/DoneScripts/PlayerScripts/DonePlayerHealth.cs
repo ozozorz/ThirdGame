@@ -84,9 +84,9 @@ public class DonePlayerHealth : MonoBehaviour
 		timer += Time.deltaTime;
 		
 		//If the timer is greater than or equal to the time before the level resets...
-		if(timer >= resetAfterDeathTime)
+		if(timer >= resetAfterDeathTime){}
 			// ... reset the level.
-			sceneFadeInOut.EndScene();
+			// sceneFadeInOut.EndScene();
 	}
 	
 	

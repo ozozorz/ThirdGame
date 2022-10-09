@@ -23,7 +23,7 @@ public class LivingEntity : MonoBehaviour, IDamageable {
         }
     }
 
-    public void Die() {
+    public virtual void Die() {
         dead = true;
         // Destroy(gameObject);
         cc.enabled = false;

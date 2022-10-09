@@ -4,21 +4,22 @@ using System.Collections;
 public class LightingController : MonoBehaviour
 {
     public Light lighitningLight;
-    public bool hideFireSound;
 
     // Use this for initialization
     void Start()
     {
-        hideFireSound = false;
+        GunSoundSystem.instance.hideFireSound = false;
         StartCoroutine(PlayLightings());
     }
 
     IEnumerator PlayLightings()
     {
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(LightSmall());
-        yield return new WaitForSeconds(4f);
-        StartCoroutine(LightBig());
+        while (true) {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(LightSmall());
+            yield return new WaitForSeconds(4f);
+            StartCoroutine(LightBig());
+        }
     }
 
     IEnumerator LightBig()
@@ -37,9 +38,9 @@ public class LightingController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         PlaySound();
 
-        hideFireSound = true;
-        yield return new WaitForSeconds(0.5f);
-        hideFireSound = false;
+        GunSoundSystem.instance.hideFireSound = true;
+        yield return new WaitForSeconds(1f);
+        GunSoundSystem.instance.hideFireSound = false;
     }
 
     IEnumerator LightSmall()
@@ -53,6 +54,10 @@ public class LightingController : MonoBehaviour
         lighitningLight.enabled = false;
         yield return new WaitForSeconds(0.5f);
         PlaySound();
+        
+        GunSoundSystem.instance.hideFireSound = true;
+        yield return new WaitForSeconds(1f);
+        GunSoundSystem.instance.hideFireSound = false;
     }
 
     void PlaySound()

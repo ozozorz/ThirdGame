@@ -20,8 +20,14 @@ public class Gun : MonoBehaviour {
             Projectile newProjectile = Instantiate(projectile, muzzle.position, muzzle.rotation);
             newProjectile.SetSpeed(muzzleVelocity);
             Instantiate(gunShotFx, muzzle.position, muzzle.rotation);
+            PlayFireSound();
         }
-        
-        
+    }
+
+    public void PlayFireSound() {
+        if (GunSoundSystem.instance.hideFireSound) {
+            return;
+        }
+        // 发出枪声
     }
 }

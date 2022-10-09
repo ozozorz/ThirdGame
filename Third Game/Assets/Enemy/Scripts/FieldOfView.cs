@@ -75,7 +75,10 @@ public class FieldOfView : MonoBehaviour
             }
         }
 
-        txt.text = visibleTargets.Count+" targets in sight";
+        if (txt != null) {
+            txt.text = visibleTargets.Count+" targets in sight";
+        }
+        
     }
 
     void DrawFieldOfView()
