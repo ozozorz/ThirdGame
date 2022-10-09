@@ -6,7 +6,7 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable {
     public float startingHealth;
     protected float health;
-    protected bool dead;
+    public bool dead;
     public Animator animator;
     protected CharacterController cc;
 

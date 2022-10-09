@@ -679,7 +679,7 @@ MonoBehaviour:
   viewAngle: 90
   targetMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 512
   obstacleMask:
     serializedVersion: 2
     m_Bits: 65
@@ -779,6 +779,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   animator: {fileID: 912150138595946532}
+  fov: {fileID: 0}
+  csb: {fileID: 0}
+  nwb: {fileID: 0}
 --- !u!143 &912150137616951290
 CharacterController:
   m_ObjectHideFlags: 0

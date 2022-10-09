@@ -15,8 +15,8 @@ public class LightingController : MonoBehaviour
     IEnumerator PlayLightings()
     {
         while (true) {
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(LightSmall());
+            // yield return new WaitForSeconds(1f);
+            // StartCoroutine(LightSmall());
             yield return new WaitForSeconds(4f);
             StartCoroutine(LightBig());
         }
@@ -56,7 +56,7 @@ public class LightingController : MonoBehaviour
         PlaySound();
         
         GunSoundSystem.instance.hideFireSound = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         GunSoundSystem.instance.hideFireSound = false;
     }
 

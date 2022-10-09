@@ -28,6 +28,12 @@ public class Gun : MonoBehaviour {
         if (GunSoundSystem.instance.hideFireSound) {
             return;
         }
-        // 发出枪声
+
+        var enes = EnemySystem.instance.enemies;
+        foreach (var e in enes) {
+            if (e == null)
+                continue;
+            e.GetComponent<CheckSoundBehaviour>()?.ReceiveSoundEvent(muzzle.position, 0);
+        }
     }
 }

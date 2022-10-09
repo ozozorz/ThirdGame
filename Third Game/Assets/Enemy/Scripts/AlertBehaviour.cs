@@ -9,4 +9,8 @@ public class AlertBehaviour : MonoBehaviour
     {
         foundPlayer = false;
     }
+
+    public void FoundPlayer() {
+        foundPlayer = true;
+    }
 }

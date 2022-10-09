@@ -44,11 +44,13 @@ public class CheckSoundBehaviour : MonoBehaviour
         navigationWalk = GetComponent<NavigationWalkBehaviour>();
     }
 
+    
+
     /// <summary>
     /// 尝试接受一个可疑的声音事件
     /// </summary>
     /// <param name="pos">声音来源位置</param>
-    public void ReceiveSoundEvent(Vector3 pos)
+    public void ReceiveSoundEvent(Vector3 pos, int priority)
     {
         if (IsInDisableReactSoundState())
             return;
@@ -62,6 +64,7 @@ public class CheckSoundBehaviour : MonoBehaviour
         _leavePos = transform.position;
         checkState = CheckState.GoingTo;
         navigationWalk.GoToDestination(_checkPos);
+
     }
 
     /// <summary>

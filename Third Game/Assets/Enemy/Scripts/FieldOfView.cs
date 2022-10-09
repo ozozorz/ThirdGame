@@ -32,6 +32,10 @@ public class FieldOfView : MonoBehaviour
     public MeshFilter viewMeshFilter;
     Mesh viewMesh;
 
+    public AlertBehaviour alertBehaviour;
+
+    public LivingEntity livingEntity;
+
     void Start()
     {
         viewMesh = new Mesh();
@@ -39,6 +43,9 @@ public class FieldOfView : MonoBehaviour
         viewMeshFilter.mesh = viewMesh;
 
         StartCoroutine("FindTargetsWithDelay", .2f);
+
+        alertBehaviour = GetComponent<AlertBehaviour>();
+        livingEntity = GetComponent<LivingEntity>();
     }
 
 
@@ -58,6 +65,9 @@ public class FieldOfView : MonoBehaviour
 
     void FindVisibleTargets()
     {
+        if (livingEntity.dead) {
+            return;
+        } 
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
@@ -71,6 +81,9 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    // 发现玩家
+                    Debug.Log("发现玩家");
+                    alertBehaviour.FoundPlayer();
                 }
             }
         }
@@ -83,6 +96,9 @@ public class FieldOfView : MonoBehaviour
 
     void DrawFieldOfView()
     {
+        if (livingEntity.dead) {
+            return;
+        } 
         int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
         float stepAngleSize = viewAngle / stepCount;
         List<Vector3> viewPoints = new List<Vector3>();
