@@ -5,6 +5,8 @@ public class LightingController : MonoBehaviour
 {
     public Light lighitningLight;
 
+    public AudioSource thunder;
+
     // Use this for initialization
     void Start()
     {
@@ -17,7 +19,7 @@ public class LightingController : MonoBehaviour
         while (true) {
             // yield return new WaitForSeconds(1f);
             // StartCoroutine(LightSmall());
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(8f);
             StartCoroutine(LightBig());
         }
     }
@@ -62,6 +64,6 @@ public class LightingController : MonoBehaviour
 
     void PlaySound()
     {
-
+        thunder.Play();
     }
 }

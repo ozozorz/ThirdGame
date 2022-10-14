@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 0}
-  viewRadius: 24
+  viewRadius: 6
   viewAngle: 90
   targetMask:
     serializedVersion: 2

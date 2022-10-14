@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour {
     public float msBetweenShots = 100f;
     public float muzzleVelocity = 35f;
 
+    public AudioSource shootSfx;
+
     private float nextShotTime;
 
     public void Shoot() {
@@ -25,6 +27,7 @@ public class Gun : MonoBehaviour {
     }
 
     public void PlayFireSound() {
+        shootSfx.Play();
         if (GunSoundSystem.instance.hideFireSound) {
             return;
         }

@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 0}
-  viewRadius: 24
+  viewRadius: 6
   viewAngle: 90
   targetMask:
     serializedVersion: 2
@@ -239,11 +239,9 @@ MonoBehaviour:
   _startPos: {x: 0, y: 0, z: 0}
   patrolPoints:
   - pos: {fileID: 0}
-    waitTime: 0
-  - pos: {fileID: 0}
     waitTime: 3
   - pos: {fileID: 0}
-    waitTime: 0
+    waitTime: 3
   navigationWalk: {fileID: 1806446795066853255}
 --- !u!114 &1806446795066852985
 MonoBehaviour:
