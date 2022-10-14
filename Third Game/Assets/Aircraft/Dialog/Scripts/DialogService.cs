@@ -71,8 +71,5 @@ namespace Dialog.Scripts {
         //     cg.blocksRaycasts = true;
         //     return menuBehaviour;
         // }
-
-        
-        
     }
 }

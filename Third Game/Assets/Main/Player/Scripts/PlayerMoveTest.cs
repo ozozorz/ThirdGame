@@ -50,6 +50,10 @@ public class PlayerMoveTest : LivingEntity {
     }
     
     public void PlayerMove(InputAction.CallbackContext callbackContext) {
+        if (EnemySystem.instance.gameOver)
+        {
+            return;
+        }
         Vector2 moveInput = callbackContext.ReadValue<Vector2>();
         targetSpeed = new Vector2(0, 0);
         if (moveInput.y > threshold) {
@@ -94,6 +98,10 @@ public class PlayerMoveTest : LivingEntity {
     }
 
     public void PlayerLook(InputAction.CallbackContext callbackContext) {
+        if (EnemySystem.instance.gameOver)
+        {
+            return;
+        }
         Vector3 mousePosition = Pointer.current.position.ReadValue();
         Ray ray = viewCamara.ScreenPointToRay(mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);

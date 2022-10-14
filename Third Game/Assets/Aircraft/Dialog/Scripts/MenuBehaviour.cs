@@ -51,7 +51,7 @@ namespace Dialog.Scripts
             Cursor.lockState = CursorLockMode.None;
             gameObject.SetActive(true);
             CanvasGroup cg = GetComponent<CanvasGroup>();
-            cg.DOFade(1, 2).SetDelay(0.25f);
+            cg.DOFade(1, 3);
             cg.blocksRaycasts = true;
         }
     }

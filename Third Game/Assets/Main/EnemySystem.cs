@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnemySystem : MonoBehaviour
 {
@@ -7,9 +8,27 @@ public class EnemySystem : MonoBehaviour
 
     public List<EnemyBehaviour> enemies;
 
+    public bool gameOver;
+
+    public AudioSource alertSound;
+    public AudioSource gunSound;
+
     private void Awake()
     {
         instance = this;
     }
 
+    public void GameOver()
+    {
+        gameOver = true;
+
+        StartCoroutine(PlaySounds());
+    }
+
+    IEnumerator PlaySounds()
+    {
+        alertSound.Play();
+        yield return new WaitForSeconds(2.0f);
+        gunSound.Play();
+    }
 }

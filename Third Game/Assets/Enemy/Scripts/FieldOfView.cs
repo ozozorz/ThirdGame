@@ -34,6 +34,8 @@ public class FieldOfView : MonoBehaviour
 
     public AlertBehaviour alertBehaviour;
 
+    public Material redViewRangeMat;
+
     void Start()
     {
         viewMesh = new Mesh();
@@ -46,6 +48,10 @@ public class FieldOfView : MonoBehaviour
             alertBehaviour = GetComponent<AlertBehaviour>();
     }
 
+    public void SetToRed()
+    {
+        viewMeshFilter.GetComponent<MeshRenderer>().material = redViewRangeMat;
+    }
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
@@ -77,8 +83,8 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargets.Add(target);
                     // 发现玩家
-                    Debug.Log("发现玩家");
-                    alertBehaviour?.FoundPlayer();
+
+                    alertBehaviour?.FoundPlayer(target);
                 }
             }
         }

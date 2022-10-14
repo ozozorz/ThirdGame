@@ -14,6 +14,11 @@ public class PlayerFire : MonoBehaviour {
 
     // Update is called once per frame
     public void Fire(InputAction.CallbackContext callbackContext) {
+        if (EnemySystem.instance.gameOver)
+        {
+            return;
+        }
+
         if (callbackContext.ReadValue<float>() != 0) {
             gunController.Shoot();
         }

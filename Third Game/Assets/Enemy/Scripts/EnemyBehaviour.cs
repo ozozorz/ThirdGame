@@ -10,6 +10,16 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         EnemySystem.instance.enemies.Add(this);
+    }
+
+    public void Stand()
+    {
+        animator.SetBool("向前走", false);
+        animator.SetBool("向后退", false);
+        animator.SetBool("向右走", false);
+        animator.SetBool("向左走", false);
+        animator.SetTrigger("stand");
     }
 }
