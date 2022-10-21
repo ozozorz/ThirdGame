@@ -6,6 +6,8 @@ public class GunSoundSystem : MonoBehaviour {
     public static GunSoundSystem instance;
     
     public bool hideFireSound;
+
+    public bool hasSilencer;
     
     private void Awake()
     {
@@ -23,5 +25,11 @@ public class GunSoundSystem : MonoBehaviour {
     void Update()
     {
         
+    }
+
+    public void EquipSilencer()
+    {
+        hideFireSound = true;
+        hasSilencer = true;
     }
 }

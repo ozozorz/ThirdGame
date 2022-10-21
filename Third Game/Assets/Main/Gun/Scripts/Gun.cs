@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour {
 
     public AudioSource shootSfx;
 
+    public AudioSource silencerSfx;
+
     private float nextShotTime;
 
     public void Shoot() {
@@ -27,16 +29,26 @@ public class Gun : MonoBehaviour {
     }
 
     public void PlayFireSound() {
-        shootSfx.Play();
+        if (GunSoundSystem.instance.hasSilencer)
+        {
+            silencerSfx.Play();
+        }
+        else
+        {
+            shootSfx.Play();
+        }
+        
         if (GunSoundSystem.instance.hideFireSound) {
             return;
         }
-
+        
         var enes = EnemySystem.instance.enemies;
         foreach (var e in enes) {
             if (e == null)
                 continue;
             e.GetComponent<CheckSoundBehaviour>()?.ReceiveSoundEvent(muzzle.position, 0);
         }
+        
+        // TODO 游戏结束
     }
 }

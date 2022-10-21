@@ -7,7 +7,9 @@ using UnityEngine.AI;
 public class Enemy : LivingEntity
 {
     public Behaviour[] dieDisables;
+
     public GameObject[] dieDisactives;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -17,7 +19,6 @@ public class Enemy : LivingEntity
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public override void Die()
