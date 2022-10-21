@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour {
     public Transform muzzle;
     public Projectile projectile;
     public GameObject gunShotFx;
+    public GameObject silencer;
     public float msBetweenShots = 100f;
     public float muzzleVelocity = 35f;
 
@@ -50,5 +51,10 @@ public class Gun : MonoBehaviour {
         }
         
         // TODO 游戏结束
+    }
+
+    public void EquipSilencer()
+    {
+        silencer.SetActive(true);
     }
 }

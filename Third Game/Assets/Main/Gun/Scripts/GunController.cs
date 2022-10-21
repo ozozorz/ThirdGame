@@ -29,4 +29,9 @@ public class GunController : MonoBehaviour {
             equippedGun.Shoot();
         }
     }
+
+    public void EquipSilencer()
+    {
+        equippedGun.EquipSilencer();
+    }
 }
