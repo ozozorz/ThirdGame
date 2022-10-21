@@ -9,7 +9,7 @@ public class Enemy : LivingEntity
     public Behaviour[] dieDisables;
 
     public GameObject[] dieDisactives;
-
+    public LayerMask bodyMask;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -24,7 +24,8 @@ public class Enemy : LivingEntity
     public override void Die()
     {
         base.Die();
-
+        animator.ResetTrigger("stand");
+        Instantiate(EnemySystem.instance.enemyBody, transform.position, Quaternion.identity, transform.parent);
         foreach (var d in dieDisables)
             d.enabled = false;
         foreach (var d in dieDisactives)

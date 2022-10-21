@@ -722,7 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06503ac31fa2118489c23b7ee360db5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertValidTime: 3
+  alertValidTime: 2
   hasFeedback: 1
   alertDisables:
   - {fileID: 912150137616951286}
@@ -801,6 +801,9 @@ MonoBehaviour:
   - {fileID: 912150137616951288}
   dieDisactives:
   - {fileID: 912150138416593785}
+  bodyMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!143 &912150137616951290
 CharacterController:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour {
     public GameObject silencer;
     public float msBetweenShots = 100f;
     public float muzzleVelocity = 35f;
+    public float fireSoundRange = 100f;
 
     public AudioSource shootSfx;
 
@@ -38,16 +39,17 @@ public class Gun : MonoBehaviour {
         {
             shootSfx.Play();
         }
-        
-        if (GunSoundSystem.instance.hideFireSound) {
+
+        if (GunSoundSystem.instance.hasSilencer)
             return;
-        }
-        
+        if (GunSoundSystem.instance.hideFireSound) return;
+
+        //发出开枪的声音，影响范围大
         var enes = EnemySystem.instance.enemies;
         foreach (var e in enes) {
             if (e == null)
                 continue;
-            e.GetComponent<CheckSoundBehaviour>()?.ReceiveSoundEvent(muzzle.position, 0);
+            e.GetComponent<CheckSoundBehaviour>()?.ReceiveSoundEvent(muzzle.position, fireSoundRange,10);
         }
         
         // TODO 游戏结束

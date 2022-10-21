@@ -20,11 +20,10 @@ public class CheckSoundBehaviour : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public NavigationWalkBehaviour navigationWalk;
-
     public float range = 5f;//能听到的半径
     Vector3 _checkPos;//声音来源位置
     Vector3 _leavePos;//发现后开始去侦察时，离开的位置。保存这个位置是为了侦查结束后回到这里
-    public float waitTime=3f;//在声音来源附近停留的时长
+    public float waitTime = 3f;//在声音来源附近停留的时长
     public float checkDistance = 2.5f;//在声音来源附近停留的位置和声音来源的距离
     public enum CheckState
     {
@@ -35,6 +34,7 @@ public class CheckSoundBehaviour : MonoBehaviour
     }
     public CheckState checkState { get; private set; }//侦查的状态
     float _stateWaitTimestamp;//将会切换到下个状态的时间
+    int _currentSoundPiority;
 
     private void Awake()
     {
@@ -44,13 +44,11 @@ public class CheckSoundBehaviour : MonoBehaviour
         navigationWalk = GetComponent<NavigationWalkBehaviour>();
     }
 
-    
-
     /// <summary>
     /// 尝试接受一个可疑的声音事件
     /// </summary>
     /// <param name="pos">声音来源位置</param>
-    public void ReceiveSoundEvent(Vector3 pos, int priority)
+    public void ReceiveSoundEvent(Vector3 pos, float range, int piority)
     {
         if (IsInDisableReactSoundState())
             return;
@@ -59,12 +57,14 @@ public class CheckSoundBehaviour : MonoBehaviour
         Debug.Log("ReceiveSoundEvent dist " + dist);
         if (dist > range)
             return;
+        if (_currentSoundPiority > piority)
+            return;
 
+        _currentSoundPiority = piority;
         _checkPos = pos;
         _leavePos = transform.position;
         checkState = CheckState.GoingTo;
         navigationWalk.GoToDestination(_checkPos);
-
     }
 
     /// <summary>
@@ -97,12 +97,13 @@ public class CheckSoundBehaviour : MonoBehaviour
             {
                 checkState = CheckState.Wait;
                 _stateWaitTimestamp = Time.time + waitTime;
+                _currentSoundPiority = 0;
             }
             return;
         }
         if (checkState == CheckSoundBehaviour.CheckState.Wait)
         {
-            if (Time.time> _stateWaitTimestamp)
+            if (Time.time > _stateWaitTimestamp)
             {
                 checkState = CheckSoundBehaviour.CheckState.Back;
                 navigationWalk.GoToDestination(_leavePos);

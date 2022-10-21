@@ -22,6 +22,8 @@ public class AlertBehaviour : MonoBehaviour
     {
         if (foundPlayer)
             return;
+        if (GetComponent<Enemy>().dead)
+            return;
         if (EnemySystem.instance.gameOver)
             return;
 
@@ -64,6 +66,7 @@ public class AlertBehaviour : MonoBehaviour
         List<ButtonData> buttonList = new List<ButtonData>();
         buttonList.Add(new ButtonData("Retry", () =>
         {
+            Debug.Log(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }));
         MenuBehaviour menu = DialogService.GetInstance().CreateMenu("You have been found. \nMission failed:(", buttonList);

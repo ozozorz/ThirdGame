@@ -20,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
         animator.SetBool("向后退", false);
         animator.SetBool("向右走", false);
         animator.SetBool("向左走", false);
+        Debug.Log("Stand");
         animator.SetTrigger("stand");
     }
 }

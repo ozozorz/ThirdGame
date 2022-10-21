@@ -38,9 +38,9 @@ namespace Dialog.Scripts
         {
             buttonCount++;
             if (buttonCount > 3) return;
-            Transform buttonTransform = buttons.transform.GetChild(buttonCount - 1);
+
             GameObject menuButtonPrefab = Resources.Load<GameObject>("Prefabs/MenuButton");
-            GameObject menuButton = Instantiate(menuButtonPrefab, buttonTransform.position, buttonTransform.rotation, buttons.transform);
+            GameObject menuButton = Instantiate(menuButtonPrefab, buttons.transform);
             ButtonBehaviour buttonBehaviour = menuButton.GetComponent<ButtonBehaviour>();
             buttonBehaviour.SetText(text).AddOnClick(onClick);
             menuButton.SetActive(true);

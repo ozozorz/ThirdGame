@@ -570,8 +570,9 @@ MonoBehaviour:
   projectile: {fileID: 8406075828981952030, guid: b65e324eacd05a44f94a3ebe0ce8e6e2, type: 3}
   gunShotFx: {fileID: 8891726639938636786, guid: 4af3159952f90554ba1775dcf1a3cc25, type: 3}
   silencer: {fileID: 2745391375865619234}
-  msBetweenShots: 1000
+  msBetweenShots: 2000
   muzzleVelocity: 50
+  fireSoundRange: 20
   shootSfx: {fileID: 916446735}
   silencerSfx: {fileID: 61983741762224700}
 --- !u!1001 &4907119685688205790
