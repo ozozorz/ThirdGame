@@ -11,6 +11,8 @@ public class CardSystem : MonoBehaviour
 
     public bool hasCard = false;
 
+    public GameObject card;
+
     private void Awake()
     {
         instance = this;
@@ -21,6 +23,7 @@ public class CardSystem : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             hasCard = true;
+            Destroy(card);
         }
     }
 }
