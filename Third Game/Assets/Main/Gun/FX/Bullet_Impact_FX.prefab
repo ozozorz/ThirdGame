@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7592225297279395622}
   - component: {fileID: 7778397799589146546}
   - component: {fileID: 7750317587324560548}
+  - component: {fileID: 8176648869761970297}
   m_Layer: 0
   m_Name: Bullet_Impact_FX
   m_TagString: Untagged
@@ -4676,3 +4677,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8176648869761970297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586502451069666912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576076c0712ac724f92b5b2fe893c2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1

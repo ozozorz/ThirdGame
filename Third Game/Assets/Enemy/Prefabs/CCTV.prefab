@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 0}
-  viewRadius: 20
+  viewRadius: 6
   viewAngle: 75
   targetMask:
     serializedVersion: 2
@@ -320,6 +320,8 @@ MonoBehaviour:
   edgeDstThreshold: 0.5
   maskCutawayDst: 0.12
   viewMeshFilter: {fileID: 3851271712817602069}
+  alertBehaviour: {fileID: 0}
+  redViewRangeMat: {fileID: 0}
 --- !u!1 &3229138392359719998
 GameObject:
   m_ObjectHideFlags: 0

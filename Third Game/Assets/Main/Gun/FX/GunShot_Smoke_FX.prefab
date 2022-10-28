@@ -4813,6 +4813,7 @@ GameObject:
   - component: {fileID: 8891726639938836920}
   - component: {fileID: 8891726639919431780}
   - component: {fileID: 8891726639920665830}
+  - component: {fileID: 5060940049762238890}
   m_Layer: 0
   m_Name: GunShot_Smoke_FX
   m_TagString: Untagged
@@ -9515,3 +9516,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5060940049762238890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8891726639938636786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576076c0712ac724f92b5b2fe893c2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1

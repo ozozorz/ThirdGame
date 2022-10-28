@@ -15,8 +15,8 @@ public class EquipSilencer : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             GunSoundSystem.instance.EquipSilencer();
-            Destroy(silencner);
             gunController.EquipSilencer();
+            Destroy(silencner);
         }
     }
 }

@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txt: {fileID: 0}
-  viewRadius: 6
+  viewRadius: 5
   viewAngle: 90
   targetMask:
     serializedVersion: 2
@@ -801,6 +801,7 @@ MonoBehaviour:
   - {fileID: 912150137616951288}
   dieDisactives:
   - {fileID: 912150138416593785}
+  - {fileID: 912150137783167234}
   bodyMask:
     serializedVersion: 2
     m_Bits: 512
@@ -1137,7 +1138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912150137783167234}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.106, y: 1.421, z: 0.545}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2470,6 +2471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912150138595946533}
   - component: {fileID: 912150138595946532}
+  - component: {fileID: 2700301204552294942}
   m_Layer: 8
   m_Name: Swat
   m_TagString: Untagged
@@ -2513,6 +2515,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2700301204552294942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912150138595946534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f8ce11e23680641b6afd3031874e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunHold: {fileID: 912150137783167233}
+  startingGun: {fileID: 1353405759039785044, guid: f96a8737b0ea05846b58c50d475a7a6f, type: 3}
 --- !u!1 &912150138616204845
 GameObject:
   m_ObjectHideFlags: 0

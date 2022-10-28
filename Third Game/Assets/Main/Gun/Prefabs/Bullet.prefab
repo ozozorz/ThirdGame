@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1344
   emitSoundToEnemies: 1
   bulletImpactFx: {fileID: 7586502451069666912, guid: c2fb37e221b9b854bbf4a180053102eb, type: 3}
 --- !u!1 &4712268728442084961
