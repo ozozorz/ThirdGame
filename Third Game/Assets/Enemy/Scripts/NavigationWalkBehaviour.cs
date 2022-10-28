@@ -46,6 +46,7 @@ public class NavigationWalkBehaviour : MonoBehaviour
 
     void CheckStopNav()
     {
+        if (!agent.enabled) return;
         if (agent.remainingDistance < 0.05f && agent.desiredVelocity.magnitude < 0.15f)
         {
             //Debug.Log(agent.destination);

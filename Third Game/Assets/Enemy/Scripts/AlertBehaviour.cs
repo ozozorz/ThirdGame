@@ -47,6 +47,8 @@ public class AlertBehaviour : MonoBehaviour
         //喊话
         //绿色变成红色
         //一段时间后失败
+        EnemySystem.instance.enemySpottedSound.Play();
+
     }
 
     private void Update()

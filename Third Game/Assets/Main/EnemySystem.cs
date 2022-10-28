@@ -13,6 +13,7 @@ public class EnemySystem : MonoBehaviour
     public AudioSource alertSound;
     public AudioSource gunSound;
     public GameObject enemyBody;
+    public AudioSource enemySpottedSound;
 
     private void Awake()
     {
