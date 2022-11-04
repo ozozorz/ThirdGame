@@ -12,6 +12,7 @@ public class AlertBehaviour : MonoBehaviour
     public bool hasFeedback;
     public Behaviour[] alertDisables;
     public AudioSource shout;
+    public CctvBehaviour cctvBehaviour;
 
     private void Awake()
     {
@@ -22,10 +23,14 @@ public class AlertBehaviour : MonoBehaviour
     {
         if (foundPlayer)
             return;
-        if (GetComponent<Enemy>().dead)
+        if (GetComponent<Enemy>() != null && GetComponent<Enemy>().dead)
             return;
         if (EnemySystem.instance.gameOver)
             return;
+        if (cctvBehaviour != null)
+        {
+            cctvBehaviour.enabled = false;
+        }
 
         Debug.Log("发现玩家");
         foundPlayer = true;
