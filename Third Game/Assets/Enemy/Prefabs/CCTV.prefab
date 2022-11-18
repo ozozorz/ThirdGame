@@ -269,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3229138392359553052}
   - component: {fileID: 8130404095190519188}
+  - component: {fileID: 9032973006974410910}
   m_Layer: 0
   m_Name: prop_cctvCam_body
   m_TagString: Untagged
@@ -310,7 +311,7 @@ MonoBehaviour:
   viewAngle: 75
   targetMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   obstacleMask:
     serializedVersion: 2
     m_Bits: 65
@@ -322,6 +323,23 @@ MonoBehaviour:
   viewMeshFilter: {fileID: 3851271712817602069}
   alertBehaviour: {fileID: 0}
   redViewRangeMat: {fileID: 0}
+--- !u!114 &9032973006974410910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229138392359719996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06503ac31fa2118489c23b7ee360db5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertValidTime: 3
+  hasFeedback: 0
+  alertDisables: []
+  shout: {fileID: 0}
+  cctvBehaviour: {fileID: 3252985122406153873}
 --- !u!1 &3229138392359719998
 GameObject:
   m_ObjectHideFlags: 0
