@@ -32,7 +32,7 @@ public class AlertBehaviour : MonoBehaviour
             cctvBehaviour.enabled = false;
         }
 
-        Debug.Log("发现玩家");
+        // Debug.Log("发现玩家");
         foundPlayer = true;
         _alertValidTimestamp = Time.time + alertValidTime;
         if (hasFeedback)
