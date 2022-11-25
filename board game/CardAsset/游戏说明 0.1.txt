@@ -1,0 +1,62 @@
+【游戏设计背景】
+地下城主题、大富翁走格子、大逃杀获胜条件。
+
+【玩法说明】
+游戏人数：2-4个人。
+获胜条件：场上只剩下最后一名玩家时获胜。
+
+【游戏流程】
+游戏准备：游戏地图1张、骰子1颗、代表玩家的棋子2-4枚、装备卡堆、怪物卡堆、机会卡堆。
+游戏开始：
+棋子放在地图的起点处。三种卡堆洗乱各自分开放好。
+每位玩家初始由20点HP，力量、智力、敏捷各1点。
+
+游戏进行：
+每一回合，玩家掷骰子，通过骰子点数进前对应格子数，抽一张格子对应的卡牌。
+	如果是装备卡，获得此装备，并且获得装备上对应的属性点。
+	如果是机会卡，执行机会卡上的事件，完成后卡牌放回牌堆。
+	如果是怪物卡，与怪物战斗，完成后卡牌放回牌堆。
+		当玩家与非玩家战斗HP<=0时，玩家失去装备放回装备卡堆，玩家棋子重回起点。
+	如果走到其他玩家所在的格子，先执行格子的事件，之后与该玩家战斗
+		玩家与玩家战斗：
+		敏捷高的玩家先出手，先手玩家对后手玩家造成 [力量+智力+敏捷] 点伤害，
+		如果后手玩家的HP被先手玩家打到0时，则被淘汰出局。
+		获胜的玩家获得失败玩家所有的装备。
+	如果经过起点格，回复HP 10点。
+
+
+【版本历史迭代】
+版本	内容										
+0.1		地图，装备卡，怪兽卡初步设计完成。
+0.2		新增机会卡。
+0.3		玩家属性点分为力量、智力、敏捷，增加对应的装备卡和怪兽卡。
+0.4		引入玩家之间的战斗，改变游戏获胜方式。
+
+【卡牌介绍】
+装备卡：
+名称				效果
+Sword				+1 Strength
+Ring				+1 Intelligence
+Bow					+1 Agility
+Hammer				+3 Strength
+Magic Book			+3 Intelligence
+Boots				+3 Agility
+Infinity Gauntlet	+5 Strength、Intelligence、Agility
+
+机会卡
+名称				效果
+Portal				Go forward n steps. n is determined by rolling the dice.
+Windstorm			Discard an equipment card.
+Equipment			Draw an equipment card.
+HP Potion			+3 HP
+Trap				-3 HP
+Sleep				Rest 2 rounds.
+
+怪兽卡
+名称				胜利条件及奖励												失败惩罚
+Shu Shu				Intelligence>=1, Draw an equipment card.					Draw a chance card.
+Wolf				Strength>=1													-2 HP
+Spider				Agility>=2													-3 HP
+Fire Man			Intelligence>=5												-5 HP
+Bear				Strength>=5													-5 HP
+Thanos				[Strength+Intelligence+Agility]>=20, Get Infinity Gauntlet.	-20 HP
